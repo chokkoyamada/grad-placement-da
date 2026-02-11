@@ -10,10 +10,11 @@ export default function Home() {
         <h1 className="max-w-3xl text-3xl font-bold leading-tight text-slate-900 md:text-4xl">
           1分で分かる。
           <br className="hidden md:block" />
-          「今の配属」と「DA」を同条件で比較
+          「今の配属」と「DA（希望順マッチング）」を同条件で比較
         </h1>
         <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-600 md:text-base">
-          難しい設定は不要です。シナリオを選ぶだけで、納得感と安定性の差がすぐ見えます。
+          DA（Deferred Acceptance）は、新卒が希望順に申し込み、部署が定員内で一時的に受け入れて
+          繰り返し決める方法です。難しい設定は不要で、シナリオを選ぶだけで納得感と安定性の差が見えます。
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <Link
