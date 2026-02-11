@@ -8,20 +8,19 @@ export default function Home() {
           新卒配属 × マッチング理論
         </p>
         <h1 className="max-w-3xl text-3xl font-bold leading-tight text-slate-900 md:text-4xl">
-          現状配属と DA を同条件で比較し、
+          1分で分かる。
           <br className="hidden md:block" />
-          納得感と安定性の差を30秒で体感する
+          「今の配属」と「DA」を同条件で比較
         </h1>
         <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-600 md:text-base">
-          seed 固定の同一サンプルを使って、満足度・希望順位・ブロッキングペアを方式間で比較します。
-          まずは 1 クリックでシミュレーターを起動してください。
+          難しい設定は不要です。シナリオを選ぶだけで、納得感と安定性の差がすぐ見えます。
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <Link
-            href="/sim?run=sample"
+            href="/sim?preset=standard"
             className="rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-700"
           >
-            サンプルで試す
+            1分で試す
           </Link>
           <Link
             href="/about"
@@ -42,8 +41,8 @@ export default function Home() {
           <p className="mt-2 text-sm text-slate-600">ブロッキングペア数で、配属の安定性を評価。</p>
         </article>
         <article className="rounded-2xl border border-slate-200 bg-white p-5">
-          <h2 className="text-sm font-semibold text-slate-800">正直申告の得</h2>
-          <p className="mt-2 text-sm text-slate-600">方式ごとのインセンティブ差を体験ベースで確認。</p>
+          <h2 className="text-sm font-semibold text-slate-800">配属理由の比較</h2>
+          <p className="mt-2 text-sm text-slate-600">方式で配属が変わった人を個人カードで確認。</p>
         </article>
       </div>
     </section>
