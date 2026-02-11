@@ -2,30 +2,32 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <section className="grid gap-8 py-10">
-      <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
-        <p className="mb-3 inline-block rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold tracking-wide text-slate-700">
+    <section className="grid gap-8 py-8 md:py-12">
+      <div className="surface-card relative overflow-hidden rounded-[2rem] p-8 md:p-10">
+        <div className="pointer-events-none absolute -right-12 -top-12 h-44 w-44 rounded-full bg-blue-200/45 blur-2xl" />
+        <div className="pointer-events-none absolute -bottom-14 left-8 h-40 w-40 rounded-full bg-blue-100/70 blur-2xl" />
+
+        <p className="mb-4 inline-flex items-center rounded-full border border-white/80 bg-white/85 px-4 py-1 text-xs font-semibold tracking-wide text-slate-700">
           新卒配属 × マッチング理論
         </p>
-        <h1 className="max-w-3xl text-3xl font-bold leading-tight text-slate-900 md:text-4xl">
-          1分で分かる。
-          <br className="hidden md:block" />
-          「今の配属」と「DA（希望順マッチング）」を同条件で比較
+        <h1 className="max-w-4xl text-3xl font-black leading-tight text-slate-900 md:text-5xl">
+          配属の納得感は、
+          <span className="brand-gradient bg-clip-text text-transparent"> 方式で変わる</span>
         </h1>
-        <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-600 md:text-base">
-          DA（Deferred Acceptance）は、新卒が希望順に申し込み、部署が定員内で一時的に受け入れて
-          繰り返し決める方法です。難しい設定は不要で、シナリオを選ぶだけで納得感と安定性の差が見えます。
+        <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-600 md:text-base">
+          DA（Deferred Acceptance）は、新卒が希望順に申し込み、部署が定員内で一時保持しながら確定する方式です。
+          このアプリでは「今の配属方式」と同条件で比べ、満足度と安定性の差を1分で体感できます。
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <Link
             href="/sim?preset=standard"
-            className="rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-700"
+            className="inline-flex items-center justify-center rounded-2xl border border-blue-600 bg-blue-600 px-6 py-3 text-sm font-bold text-white shadow-md transition hover:bg-blue-700 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-300 active:translate-y-px"
           >
-            1分で試す
+            1分で比較を始める
           </Link>
           <Link
             href="/about"
-            className="rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
+            className="rounded-2xl border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
           >
             指標の見方
           </Link>
@@ -33,17 +35,17 @@ export default function Home() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-3">
-        <article className="rounded-2xl border border-slate-200 bg-white p-5">
-          <h2 className="text-sm font-semibold text-slate-800">納得感の可視化</h2>
-          <p className="mt-2 text-sm text-slate-600">第1希望率、上位希望率、平均希望順位を方式ごとに比較。</p>
+        <article className="surface-card rounded-2xl p-5">
+          <h2 className="text-sm font-bold text-slate-800">納得感の可視化</h2>
+          <p className="mt-2 text-sm text-slate-600">第1希望率・上位希望率・平均希望順位を比較。</p>
         </article>
-        <article className="rounded-2xl border border-slate-200 bg-white p-5">
-          <h2 className="text-sm font-semibold text-slate-800">揉めにくさ</h2>
-          <p className="mt-2 text-sm text-slate-600">ブロッキングペア数で、配属の安定性を評価。</p>
+        <article className="surface-card rounded-2xl p-5">
+          <h2 className="text-sm font-bold text-slate-800">揉めにくさ</h2>
+          <p className="mt-2 text-sm text-slate-600">ブロッキングペアで配属の安定性を比較。</p>
         </article>
-        <article className="rounded-2xl border border-slate-200 bg-white p-5">
-          <h2 className="text-sm font-semibold text-slate-800">配属理由の比較</h2>
-          <p className="mt-2 text-sm text-slate-600">方式で配属が変わった人を個人カードで確認。</p>
+        <article className="surface-card rounded-2xl p-5">
+          <h2 className="text-sm font-bold text-slate-800">理由の透明性</h2>
+          <p className="mt-2 text-sm text-slate-600">方式で配属が変わる候補者を個人カードで確認。</p>
         </article>
       </div>
     </section>
