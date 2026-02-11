@@ -8,6 +8,7 @@ interface PresetItem {
   key: string;
   label: string;
   description: string;
+  config: SimulationConfig;
 }
 
 interface RecalcModalProps {
@@ -19,11 +20,23 @@ interface RecalcModalProps {
 export function RecalcModal({ presetKey, config, presets }: RecalcModalProps) {
   const [open, setOpen] = useState(false);
   const [selectedPreset, setSelectedPreset] = useState(presetKey);
+  const [formConfig, setFormConfig] = useState<SimulationConfig>(config);
 
   const presetMap = useMemo(
     () => Object.fromEntries(presets.map((preset) => [preset.key, preset])),
     [presets],
   );
+
+  const updateNumberField = <K extends keyof SimulationConfig>(key: K, value: number) => {
+    if (Number.isNaN(value)) {
+      return;
+    }
+
+    setFormConfig((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
+  };
 
   return (
     <>
@@ -31,6 +44,7 @@ export function RecalcModal({ presetKey, config, presets }: RecalcModalProps) {
         type="button"
         onClick={() => {
           setSelectedPreset(presetKey);
+          setFormConfig(config);
           setOpen(true);
         }}
         className="rounded-2xl border border-blue-600 bg-blue-600 px-5 py-3 text-sm font-bold text-white shadow-md transition hover:bg-blue-700"
@@ -62,7 +76,10 @@ export function RecalcModal({ presetKey, config, presets }: RecalcModalProps) {
                       <button
                         key={preset.key}
                         type="button"
-                        onClick={() => setSelectedPreset(preset.key)}
+                        onClick={() => {
+                          setSelectedPreset(preset.key);
+                          setFormConfig(preset.config);
+                        }}
                         className={`block w-full rounded-xl border px-3 py-2 text-left text-xs transition ${
                           selectedPreset === preset.key
                             ? "border-slate-900 bg-slate-900 text-white"
@@ -88,7 +105,8 @@ export function RecalcModal({ presetKey, config, presets }: RecalcModalProps) {
                         type="number"
                         min={50}
                         max={300}
-                        defaultValue={config.candidateCount}
+                        value={formConfig.candidateCount}
+                        onChange={(event) => updateNumberField("candidateCount", Number(event.target.value))}
                         className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm"
                       />
                     </div>
@@ -102,7 +120,8 @@ export function RecalcModal({ presetKey, config, presets }: RecalcModalProps) {
                         type="number"
                         min={5}
                         max={30}
-                        defaultValue={config.departmentCount}
+                        value={formConfig.departmentCount}
+                        onChange={(event) => updateNumberField("departmentCount", Number(event.target.value))}
                         className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm"
                       />
                     </div>
@@ -117,7 +136,8 @@ export function RecalcModal({ presetKey, config, presets }: RecalcModalProps) {
                         min={0}
                         max={0.7}
                         step={0.01}
-                        defaultValue={config.constraintRate}
+                        value={formConfig.constraintRate}
+                        onChange={(event) => updateNumberField("constraintRate", Number(event.target.value))}
                         className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm"
                       />
                     </div>
@@ -136,7 +156,8 @@ export function RecalcModal({ presetKey, config, presets }: RecalcModalProps) {
                           type="number"
                           min={1}
                           max={99999999}
-                          defaultValue={config.seed}
+                          value={formConfig.seed}
+                          onChange={(event) => updateNumberField("seed", Number(event.target.value))}
                           className="w-full rounded-lg border border-slate-200 px-2 py-1"
                         />
                       </div>
@@ -149,8 +170,9 @@ export function RecalcModal({ presetKey, config, presets }: RecalcModalProps) {
                           name="preferenceLength"
                           type="number"
                           min={1}
-                          max={config.departmentCount}
-                          defaultValue={config.preferenceLength}
+                          max={formConfig.departmentCount}
+                          value={formConfig.preferenceLength}
+                          onChange={(event) => updateNumberField("preferenceLength", Number(event.target.value))}
                           className="w-full rounded-lg border border-slate-200 px-2 py-1"
                         />
                       </div>
@@ -165,7 +187,8 @@ export function RecalcModal({ presetKey, config, presets }: RecalcModalProps) {
                             type="number"
                             min={1}
                             max={60}
-                            defaultValue={config.minCapacity}
+                            value={formConfig.minCapacity}
+                            onChange={(event) => updateNumberField("minCapacity", Number(event.target.value))}
                             className="w-full rounded-lg border border-slate-200 px-2 py-1"
                           />
                         </div>
@@ -179,7 +202,8 @@ export function RecalcModal({ presetKey, config, presets }: RecalcModalProps) {
                             type="number"
                             min={1}
                             max={80}
-                            defaultValue={config.maxCapacity}
+                            value={formConfig.maxCapacity}
+                            onChange={(event) => updateNumberField("maxCapacity", Number(event.target.value))}
                             className="w-full rounded-lg border border-slate-200 px-2 py-1"
                           />
                         </div>
@@ -195,7 +219,8 @@ export function RecalcModal({ presetKey, config, presets }: RecalcModalProps) {
                           min={0}
                           max={1}
                           step={0.05}
-                          defaultValue={config.popularitySkew}
+                          value={formConfig.popularitySkew}
+                          onChange={(event) => updateNumberField("popularitySkew", Number(event.target.value))}
                           className="w-full rounded-lg border border-slate-200 px-2 py-1"
                         />
                       </div>
@@ -210,7 +235,8 @@ export function RecalcModal({ presetKey, config, presets }: RecalcModalProps) {
                           min={0}
                           max={1}
                           step={0.05}
-                          defaultValue={config.aptitudeWeight}
+                          value={formConfig.aptitudeWeight}
+                          onChange={(event) => updateNumberField("aptitudeWeight", Number(event.target.value))}
                           className="w-full rounded-lg border border-slate-200 px-2 py-1"
                         />
                       </div>

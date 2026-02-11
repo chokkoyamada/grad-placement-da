@@ -5,6 +5,8 @@ import { normalizeSimulationConfig } from "@/lib/simulation/normalize";
 import { runSimulation } from "@/lib/simulation/run-simulation";
 import type { SimulationConfig } from "@/lib/types";
 
+export const dynamic = "force-dynamic";
+
 type RankBucketKey = "rank1" | "rank2" | "rank3" | "rank4" | "rank5plus";
 
 const RANK_BUCKETS: Array<{ key: RankBucketKey; label: string; color: string }> = [
@@ -232,6 +234,10 @@ export default async function SimulatorPage({ searchParams }: SimulatorPageProps
     key,
     label: preset.label,
     description: preset.description,
+    config: normalizeSimulationConfig({
+      ...defaultSimulationConfig,
+      ...preset.config,
+    }),
   }));
 
   return (
@@ -246,6 +252,14 @@ export default async function SimulatorPage({ searchParams }: SimulatorPageProps
             <p className="text-xs text-slate-600">
               {SIM_PRESETS[presetKey]?.description}
             </p>
+            <div className="mt-2 flex flex-wrap gap-2 text-[11px]">
+              <span className="rounded-full bg-slate-100 px-2 py-1 text-slate-700">N {input.config.candidateCount}</span>
+              <span className="rounded-full bg-slate-100 px-2 py-1 text-slate-700">M {input.config.departmentCount}</span>
+              <span className="rounded-full bg-slate-100 px-2 py-1 text-slate-700">
+                制約率 {(input.config.constraintRate * 100).toFixed(0)}%
+              </span>
+              <span className="rounded-full bg-slate-100 px-2 py-1 text-slate-700">seed {input.config.seed}</span>
+            </div>
           </div>
           <RecalcModal presetKey={presetKey} config={input.config} presets={presetItems} />
         </div>
