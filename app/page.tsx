@@ -12,11 +12,17 @@ export default function Home() {
         </p>
         <h1 className="max-w-4xl text-3xl font-black leading-tight text-slate-900 md:text-5xl">
           配属の納得感は、
-          <span className="brand-gradient bg-clip-text text-transparent"> 方式で変わる</span>
+          <span className="brand-gradient bg-clip-text text-transparent">
+            {" "}
+            方式で変わる
+          </span>
         </h1>
         <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-600 md:text-base">
-          DA（Deferred Acceptance）は、新卒が希望順に申し込み、部署が定員内で一時保持しながら確定する方式です。
-          このアプリでは「今の配属方式」と同条件で比べ、満足度と安定性の差を1分で体感できます。
+          このアプリは、
+          <span className="font-semibold">現在方式（Baseline）</span>と
+          <span className="font-semibold"> DA</span>
+          の2つを同じ条件で比べる体験デモです。
+          まずは満足度分布を見るだけで、配属の違いを直感的に確認できます。
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-3">
           <Link
@@ -37,15 +43,21 @@ export default function Home() {
       <div className="grid gap-4 md:grid-cols-3">
         <article className="surface-card rounded-2xl p-5">
           <h2 className="text-sm font-bold text-slate-800">納得感の可視化</h2>
-          <p className="mt-2 text-sm text-slate-600">第1希望率・上位希望率・平均希望順位を比較。</p>
+          <p className="mt-2 text-sm text-slate-600">
+            希望に近い配属がどれだけ増えるかを比較。
+          </p>
         </article>
         <article className="surface-card rounded-2xl p-5">
           <h2 className="text-sm font-bold text-slate-800">揉めにくさ</h2>
-          <p className="mt-2 text-sm text-slate-600">ブロッキングペアで配属の安定性を比較。</p>
+          <p className="mt-2 text-sm text-slate-600">
+            再調整が必要になりそうな組合せの少なさを比較。
+          </p>
         </article>
         <article className="surface-card rounded-2xl p-5">
           <h2 className="text-sm font-bold text-slate-800">理由の透明性</h2>
-          <p className="mt-2 text-sm text-slate-600">方式で配属が変わる候補者を個人カードで確認。</p>
+          <p className="mt-2 text-sm text-slate-600">
+            方式で配属が変わる候補者を個人カードで確認。
+          </p>
         </article>
       </div>
     </section>
